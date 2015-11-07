@@ -11,7 +11,11 @@ import java.util.Scanner;
 
 public class AgendaOfNames {
 
-    String[] nameAgenda = new String[50];
+    //crearea vectorului pentru inregistrari
+    String[] nameAgenda = new String[3];
+
+    //adaug un index ca sa stiu unde am ajuns
+    private int index=0;
 
 
     public static void main(String[] args) {
@@ -81,7 +85,7 @@ public class AgendaOfNames {
         return name;
     }
 
-    private int readMenuOption() {
+    private  int readMenuOption() {
         Scanner s = new Scanner(System.in);
         System.out.print("Option: ");
         int option = s.nextInt();
@@ -94,17 +98,85 @@ public class AgendaOfNames {
     }
 
     private void createItem() {
+        //daca nu am ajuns la 50
+        //citire
+        //adaugare in array daca nu am ajuns la 50
 
-    }
+        boolean done=false;
+        String val = readName();
+        for (int i=0; i<nameAgenda.length; i++){
+
+            if (nameAgenda[i]==null){
+                nameAgenda[i]=val;
+                done=true;
+                break;
+
+
+        }
+            }
+
+        if (index<nameAgenda.length && !done) {
+                nameAgenda[index] = val;
+        index++;
+
+
+        }
+
+
+        }
+
+
 
 
     private void updateItem() {
-        //search and if found do an update
+
+
+        String numeCurent= readName();
+
+        for (int i=0; i<nameAgenda.length; i++) {
+
+            // trebuie comparat obiectul sa nu fie null
+            if (nameAgenda[i] != null) {
+                if ((nameAgenda[i]).equals(numeCurent)) {
+                    System.out.println("S-a gasit o valoare egala");
+
+                    String newValue = readName();
+                    nameAgenda[i] = newValue;
+                    break;
+
+
+                } else {
+                    System.out.println("Nu s-a putut gasi string-ul respectiv");
+
+                }
+            }
+        }
 
     }
 
 
     private void deleteItem() {
+        String numeCurent= readName();
+
+        for (int i=0; i<nameAgenda.length; i++) {
+
+            // trebuie comparat obiectul sa nu fie null
+            if (nameAgenda[i] != null) {
+                if ((nameAgenda[i]).equals(numeCurent)) {
+                    System.out.println("S-a gasit o valoare egala");
+
+
+                    nameAgenda[i] = null;
+                    break;
+
+
+                } else {
+                    System.out.println("Nu s-a putut gasi string-ul respectiv");
+                    break;
+
+                }
+            }
+        }
 
     }
 
@@ -117,6 +189,23 @@ public class AgendaOfNames {
 
     /* returns the index where the name was found or -1 if the name is not in the agenda */
     private void searchAgendaAndDisplay() {
+        String numeCautat= readName();
+
+        for (int i=0; i<nameAgenda.length; i++){
+            if(nameAgenda[i]!=null){
+                if(numeCautat.equals(nameAgenda[i])){
+                    System.out.println("S-a gasit numele cautat pe pozitia "+ i+1);
+                    break;
+                }
+
+            }
+            else {
+                System.out.println("Nu s-a gasit numele cautat");
+                break;
+            }
+        }
+
+
 
     }
 
@@ -125,10 +214,10 @@ public class AgendaOfNames {
         System.out.println("aici as lista agenda");
         int counter = 0;
         for (int i = 0; i < nameAgenda.length; i++) {
-            if (nameAgenda[i] != null) {
+            //if (nameAgenda[i] != null) {
                 System.out.println(nameAgenda[i]);
                 counter++;
-            }
+           // }
         }
         if (counter == 0)
             System.out.println("Agenda este goala");
