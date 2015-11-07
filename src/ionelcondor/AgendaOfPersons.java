@@ -136,14 +136,18 @@ public class AgendaOfPersons {
 
     private void updateItem() {
 
-/*
-        String numeCurent= readName();
+
+        String numeCurent= readAString("Nume persoana");
 
         for (int i=0; i<nameAgenda.length; i++) {
 
             // trebuie comparat obiectul sa nu fie null
             if (nameAgenda[i] != null) {
-                if ((nameAgenda[i]).equals(numeCurent)) {
+
+                
+
+
+                if ((nameAgenda[i]).getName().equals(numeCurent)) {
                     System.out.println("S-a gasit o valoare egala");
 
                     String newValue = readName();
@@ -157,7 +161,7 @@ public class AgendaOfPersons {
                 }
             }
         }
-*/
+
     }
 
 
